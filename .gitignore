@@ -32,3 +32,6 @@ ENV/
 # IDEs
 .vscode/
 .idea/
+
+# External Dependencies
+external/
