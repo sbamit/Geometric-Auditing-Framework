@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Data & Generated outputs
+*.csv
+*.json
+*.jsonl
+*.log
+*.txt
+
+# Machine Learning & Checkpoints
+*.pt
+*.pth
+*.safetensors
+activations/
+checkpoints/
+models/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
