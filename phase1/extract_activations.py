@@ -101,7 +101,7 @@ DEFAULT_CONE_DIM   = 3        # k: orthonormal basis vectors per cone
 DEFAULT_N_HARMFUL  = 32       # harmful prompts per category
 DEFAULT_N_HARMLESS = 32       # harmless prompts per category
 DEFAULT_LR         = 1e-2
-DEFAULT_EPOCHS     = 1
+DEFAULT_EPOCHS     = 5
 DEFAULT_BATCH      = 1        # micro-batch (gradient accumulation used)
 DEFAULT_EFF_BATCH  = 16       # effective batch size
 DEFAULT_ABL_LAM    = 1.0      # weight for L_ablation
@@ -1055,6 +1055,23 @@ def main():
         cone_path = os.path.join(args.out, f"{concept}_cone.pt")
         torch.save(B_t, cone_path)
         print(f"  B_t saved → {cone_path}  shape={tuple(B_t.shape)}")
+
+        # ── 8. Regenerate targets with trained cone ───────────────────────────
+        # The initial targets were generated with the weak seed direction and
+        # may show refusals in the ablation column.  Now that the cone has
+        # been trained, its primary basis vector reliably suppresses refusal
+        # when ablated and induces it when added.  Overwrite the JSON so the
+        # saved targets reflect the Stage-3 description (compliance / refusal
+        # / baseline) rather than the seed-direction artefacts.
+        print("  Regenerating targets with trained cone...")
+        if os.path.exists(targets_path):
+            os.remove(targets_path)
+        trained_dir = B_t[0].float().cuda().to(model.dtype)   # primary trained direction (unit norm)
+        generate_rdo_targets(
+            model, harmful_fmt, harmless_fmt,
+            trained_dir, args.layer, alpha,
+            targets_path=targets_path,
+        )
 
         # Register this cone so the next concept can penalise overlap with it
         trained_cone = RefusalCone(

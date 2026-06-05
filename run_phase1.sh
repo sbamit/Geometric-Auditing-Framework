@@ -156,7 +156,7 @@ conda run -n $CONDA_ENV \
         --cone_dim    3 \
         --n_harmful   32 \
         --n_harmless  32 \
-        --epochs      1 \
+        --epochs      5 \
         --spec_lambda 0.5 \
         --out         "$OUTPUT_DIR" \
         "$@"    # forward any extra CLI args (e.g. --seed_only, --cone_dim 1)
