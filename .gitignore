@@ -4,6 +4,10 @@ __pycache__/
 *$py.class
 *.so
 
+# Phase 1 generated outputs
+phase1/dim_outputs/
+phase1/jacobian_outputs/
+
 # Data & Generated outputs
 *.csv
 *.json
