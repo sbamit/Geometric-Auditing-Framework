@@ -39,3 +39,4 @@ ENV/
 
 # External Dependencies
 external/
+*.png
