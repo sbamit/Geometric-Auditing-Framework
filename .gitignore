@@ -41,3 +41,5 @@ ENV/
 external/
 *.png
 layerwise_tensors/
+activations_output/
+phase1/projection_outputs/
