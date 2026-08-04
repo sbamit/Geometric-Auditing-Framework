@@ -40,6 +40,8 @@ ENV/
 # External Dependencies
 external/
 *.png
+*.pdf
 layerwise_tensors/
 activations_output/
 phase1/projection_outputs/
+qkvo_weights_export/
