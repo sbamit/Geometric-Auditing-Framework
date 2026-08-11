@@ -45,3 +45,4 @@ layerwise_tensors/
 activations_output/
 phase1/projection_outputs/
 qkvo_weights_export/
+phase1/results/
