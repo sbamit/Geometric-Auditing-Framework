@@ -43,6 +43,7 @@ external/
 *.pdf
 layerwise_tensors/
 activations_output/
+activations_output_under_ablation/
 phase1/projection_outputs/
 qkvo_weights_export/
 phase1/results/
